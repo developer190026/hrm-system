@@ -1,0 +1,28 @@
+[
+    {
+        "name": "John Doe",
+        "position": "Software Engineer",
+        "salary": 75000.00
+        
+    },
+    {
+        "name": "Jane Smith",
+        "position": "Project Manager",
+        "salary": 85000.00
+    },
+    {
+        "name": "Ali Khan",
+        "position": "HR Officer",
+        "salary": 50000.00
+    },
+    {
+        "name": "Maria Garcia",
+        "position": "UI/UX Designer",
+        "salary": 65000.00
+    },
+    {
+        "name": "Daniel Lee",
+        "position": "QA Tester",
+        "salary": 55000.00
+    }
+]
