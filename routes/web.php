@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 
 // Route to view all employees (GET request)
-Route::get('/', [EmployeeController::class, 'index'])->name('employees.index');
+Route::get('/', [EmployeeController::class, 'index'])
+    ->middleware('auth')
+    ->name('employees.index');
 
 // Route to display the employee creation form (GET request)
 Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
@@ -20,3 +22,14 @@ Route::get('/employees/edit/{id}', [EmployeeController::class, 'edit'])->name('e
 
 // Route to update an employee (PUT request)
 Route::put('/employees/{id}', [EmployeeController::class, 'update'])->name('employees.update');
+
+Route::post('/employees/login', [EmployeeController::class, 'login'])
+    ->name('employees.userlogin');
+
+Route::get('/employees/login', [EmployeeController::class, 'showLoginForm'])
+    ->name('login'); // ← Alias required by auth middleware
+
+    Route::post('/logout', function () {
+        Auth::logout();
+        return redirect()->route('login'); // or your custom login route
+    })->name('logout');

@@ -3,7 +3,17 @@
 @section('title', 'Employee List')
 
 @section('content')
-<h1>Employee List</h1>
+
+
+    <div class="text-center">
+        @if (Auth::check())
+            <h1>Hi, {{ $userName }}!</h1>
+        @else
+            <h1>Welcome, Guest!</h1>
+        @endif
+    </div>
+
+<h2>Employee List</h2>
 
 <a href="{{ route('employees.create') }}" class="btn btn-primary mb-3">Add New</a>
 
@@ -40,10 +50,11 @@
             </td>
         </tr>
         @endforeach
+       
     </tbody>
-
     <div class="md-5">
         {{ $employees->links() }}
     </div>
+   
 </table>
 @endsection

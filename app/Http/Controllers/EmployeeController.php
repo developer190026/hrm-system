@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -9,13 +9,34 @@ use Illuminate\Support\Facades\Storage;
 class EmployeeController extends Controller
 {
     public function index()
+{
+    // Get the list of employees (with pagination)
+    $employees = DB::table('employees')->simplepaginate(4);
+
+    // Get the logged-in user's name
+    $userName = Auth::user()->name;
+
+    // Pass both the employees list and user's name to the view
+    return view('employees.index', compact('employees', 'userName'));
+}
+    public function showLoginForm()
     {
-        //$employees = DB::table('employees')->get();
-        $employees = DB::table('employees')->simplepaginate(4);
-
-
-        return view('employees.index', compact('employees'));
+        return view('employees.login');
     }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+    
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('employees.index'); // Redirect to main page after login
+        }
+    
+        return back()->withErrors([
+            'email' => 'Invalid credentials provided.',
+        ]);
+    }
+    
 
     public function create()
     {

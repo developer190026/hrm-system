@@ -50,8 +50,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('employees.create') }}">Add Employee</a>
                     </li>
+            
+                    @auth
+                    <li class="nav-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link" style="display: inline; padding: 0; margin: 0; border: none;">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                    @endauth
                 </ul>
             </div>
+            
         </div>
     </nav>
 
