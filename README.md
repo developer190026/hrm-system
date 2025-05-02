@@ -59,3 +59,34 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+======= Important commands and intrustions =====
+
+php artisan serve
+php artisan serve --port=8001 
+if session issue found run below commands
+
+    php artisan config:clear
+    php artisan session:table
+    php artisan make:migration create_sessions_table
+    php artisan migration
+    or
+    php artisan migration:fresh
+ 
+ env. file changes
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3366
+DB_DATABASE=laravel_hrm_system
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+php artisan make:seeder employeeSeerder
+ php artisan make:model employee
+ php artisan make:auth
+php artisan storage:link
+
+rmdir public\storage
+php artisan storage:link
