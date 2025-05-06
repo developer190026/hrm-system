@@ -5,20 +5,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\employee;  
+use App\Models\Department;  
 
 class EmployeeController extends Controller
 {
     public function index()
-{
-    // Get the list of employees (with pagination)
-    $employees = DB::table('employees')->simplepaginate(4);
-
-    // Get the logged-in user's name
-    $userName = Auth::user()->name;
-
-    // Pass both the employees list and user's name to the view
-    return view('employees.index', compact('employees', 'userName'));
-}
+    {
+        // Eager load the 'department' relationship with employees (use with() for eager loading)
+        $employees = Employee::with('department')->simplePaginate(4);  // This line handles the employee fetching and pagination
+    
+        // Get the logged-in user's name
+        $userName = Auth::user()->name;
+    
+        // Pass both the employees list and user's name to the view
+        return view('employees.index', compact('employees', 'userName'));
+    }
+    
     public function showLoginForm()
     {
         return view('employees.login');
@@ -40,14 +43,21 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('employees.create');
+       
+    //return view('employees.create');
+       
+    $departments = Department::all(); // Fetch all departments
+    return view('employees.create', compact('departments'));
+
+
+
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
+            'department_id' => 'required|string|max:255',
             'salary' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -58,7 +68,7 @@ class EmployeeController extends Controller
 
         $data = DB::table('employees')->insert([
             'name' => $request->name,
-            'position' => $request->position,
+            'department_id' => $request->department_id,
             'salary' => $request->salary,
             'image' => $imagePath,
         ]);
@@ -76,14 +86,14 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
+            'department_id' => 'required|string|max:255',
             'salary' => 'required|numeric'
             //'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = [
             'name' => $request->name,
-            'position' => $request->position,
+            'department_id' => $request->department_id,
             'salary' => $request->salary,
         ];
 

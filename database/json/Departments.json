@@ -1,0 +1,82 @@
+[
+  {
+    "department_name": "Sales",
+    "description": "Responsible for selling products or services and driving revenue."
+  },
+  {
+    "department_name": "Human Resources",
+    "description": "Manages hiring, onboarding, employee relations, and compliance."
+  },
+  {
+    "department_name": "Finance",
+    "description": "Oversees budgeting, accounting, and financial reporting."
+  },
+  {
+    "department_name": "Marketing",
+    "description": "Promotes products and services through strategic campaigns."
+  },
+  {
+    "department_name": "IT",
+    "description": "Manages the company’s technology infrastructure and software."
+  },
+  {
+    "department_name": "Customer Support",
+    "description": "Provides assistance and solutions to customer inquiries and problems."
+  },
+  {
+    "department_name": "Operations",
+    "description": "Ensures efficient business processes and logistics."
+  },
+  {
+    "department_name": "Legal",
+    "description": "Handles legal matters, contracts, and compliance."
+  },
+  {
+    "department_name": "Product Development",
+    "description": "Designs and builds new products and features."
+  },
+  {
+    "department_name": "Research & Development",
+    "description": "Conducts innovation, experimentation, and technical research."
+  },
+  {
+    "department_name": "Procurement",
+    "description": "Sources and purchases goods and services for the company."
+  },
+  {
+    "department_name": "Supply Chain",
+    "description": "Manages flow of goods from suppliers to customers."
+  },
+  {
+    "department_name": "Quality Assurance",
+    "description": "Ensures products and services meet established standards."
+  },
+  {
+    "department_name": "Administration",
+    "description": "Supports day-to-day business operations and internal services."
+  },
+  {
+    "department_name": "Public Relations",
+    "description": "Maintains company image and manages media communications."
+  },
+  {
+    "department_name": "Compliance",
+    "description": "Ensures adherence to laws, regulations, and internal policies."
+  },
+  {
+    "department_name": "Training & Development",
+    "description": "Improves employee skills through educational programs."
+  },
+  {
+    "department_name": "Business Development",
+    "description": "Identifies and builds strategic partnerships and growth opportunities."
+  },
+  {
+    "department_name": "Security",
+    "description": "Protects company assets, information, and personnel."
+  },
+  {
+    "department_name": "Executive Management",
+    "description": "Sets strategic direction and oversees company leadership."
+  }
+]

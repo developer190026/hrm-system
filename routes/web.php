@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\AlldepartmentController;
+
 
 // Route to view all employees (GET request)
 Route::get('/', [EmployeeController::class, 'index'])
@@ -9,7 +11,8 @@ Route::get('/', [EmployeeController::class, 'index'])
     ->name('employees.index');
 
 // Route to display the employee creation form (GET request)
-Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
+Route::get('/employees/create', [EmployeeController::class, 'create'])
+->name('employees.create');
 
 // Route to store a new employee (POST request)
 Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
@@ -33,3 +36,20 @@ Route::get('/employees/login', [EmployeeController::class, 'showLoginForm'])
         Auth::logout();
         return redirect()->route('login'); // or your custom login route
     })->name('logout');
+
+    Route::get('/dashboard', function () {
+    return view('employees.dashboard');
+})->name('dashboard');
+
+Route::get('/profile', function () {
+    return view('employees.profile');
+})->name('profile');
+
+Route::get('/settings', function () {
+    return view('employees.settings');
+})->name('settings');
+
+Route::resource('employees', EmployeeController::class);
+Route::Resource('department', DepartmentApiController::class);
+
+Route::get('/alldepartment', [AlldepartmentController::class, 'index'])->name('alldepartment');
