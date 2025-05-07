@@ -85,7 +85,7 @@
                             </a>
                         </li>
                         <li class="nav-item mb-2">
-                            <a class="nav-link text-white {{ request()->routeIs('alldepartment') ? 'fw-bold active' : '' }}" href="{{ route('alldepartment') }}">
+                            <a class="nav-link text-white {{ request()->routeIs('departments.index') ? 'fw-bold active' : '' }}" href="{{ route('departments.index') }}">
                                 <i class="bi bi-person"></i>All Departments
                             </a>
                         </li>

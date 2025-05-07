@@ -23,7 +23,7 @@
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Total Departments</h5>
-                    <a href="{{ route('alldepartment') }}">
+                    <a href="{{ route('departments.index') }}">
                         <p class="card-text display-6">{{ \App\Models\Department::count() }}</p>
                     </a>
                 </div>
