@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use App\Models\Department;
+use Illuminate\Support\Facades\File;
 
 class DepartmentSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class DepartmentSeeder extends Seeder
     public function run(): void
     {
         //
-        $jsonPath = database_path('json\departments.json'); 
+        $jsonPath = database_path('json\departments.json');
 
         if (!File::exists($jsonPath)) {
             $this->command->error("JSON file not found at: $jsonPath");

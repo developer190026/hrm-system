@@ -4,8 +4,20 @@
 
 @section('content')
 
+
+
             <div class="d-flex justify-content-between align-items-center mb-4">
+                
+                @can('isAdmin')
+                <h2 class="mb-0">List for admin</h2>
+                @endcan
+
+                @cannot('isAdmin')
                 <h2 class="mb-0">Employee List</h2>
+                @endcannot
+                
+
+
                 <a href="{{ route('employees.create') }}" class="btn btn-primary">Add New</a>
             </div>
 

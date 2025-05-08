@@ -7,18 +7,27 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\employee;  
 use App\Models\Department;  
+//use Illuminate\Support\Facades\Gate;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
+
+        // if(Gate::allows("isAdmin"))
+        // {
+        //     return "Hello Admin";
+        // }
+        // else{
+        //     return "Hello Employee";
+        // }
         // Eager load the 'department' relationship with employees (use with() for eager loading)
-        $employees = Employee::with('department')->simplePaginate(4);  // This line handles the employee fetching and pagination
+       $employees = Employee::with('department')->simplePaginate(4);  // This line handles the employee fetching and pagination
     
-        // Get the logged-in user's name
-        $userName = Auth::user()->name;
+        //Get the logged-in user's name
+       $userName = Auth::user()->name;
     
-        // Pass both the employees list and user's name to the view
+        //Pass both the employees list and user's name to the view
         return view('employees.index', compact('employees', 'userName'));
     }
     

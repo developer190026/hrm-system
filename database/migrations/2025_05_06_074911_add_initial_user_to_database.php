@@ -19,6 +19,17 @@ return new class extends Migration
             $user = new User();
             $user->name = "Bindu";
             $user->email = "developer190026@gmail.com";
+            $user->role = "admin";
+            $user->password = bcrypt("admin@12345"); // Make sure to hash the password
+            $user->save();
+        }
+
+        if (User::where('email', 'bindu@gmail.com')->doesntExist()) {
+            // Create a new user instance if it doesn't exist
+            $user = new User();
+            $user->name = "Emp Bindu";
+            $user->email = "bindu@gmail.com";
+            $user->role = "employee";
             $user->password = bcrypt("admin@12345"); // Make sure to hash the password
             $user->save();
         }
