@@ -61,7 +61,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 
-======= Important commands and intrustions =====
 
 php artisan serve
 php artisan serve --port=8001 
@@ -90,3 +89,32 @@ php artisan storage:link
 
 rmdir public\storage
 php artisan storage:link
+php artisan make:controller AuthController
+4. (Optional) Add Dummy User to Database
+If you want to test login, create a user in your database:
+
+
+php artisan tinker
+
+
+
+PS D:\xamp-server\htdocs\hrm-system> php artisan tinker
+>> 
+Psy Shell v0.12.8 (PHP 8.2.12 — cli) by Justin Hileman
+> $user = new App\Models\User
+= App\Models\User {#5203}
+
+> $user->name = "Bindu"
+= "Bindu"
+
+> $user->email = "bindu@gmail.com"
+= "bindu@gmail.com"
+
+> $user->password = "admin@12345"
+= "admin@12345"
+
+> $user->save
+= null
+
+> $user->save();
+= true

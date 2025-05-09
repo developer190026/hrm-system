@@ -14,9 +14,17 @@
     </div>
 
     <div class="mb-3">
-        <label>Position</label>
-        <input type="text" name="position" class="form-control" required>
+        <label for="department_id" class="form-label">Select Department</label>
+        <select name="department_id" class="form-control" required>
+            <option value="">Select Department</option>
+            @foreach($departments as $department)
+                <option value="{{ $department->id }}">
+                    {{ $department->department_name }} (ID: {{ $department->id }})
+                </option>
+            @endforeach
+        </select>
     </div>
+    
 
     <div class="mb-3">
         <label>Salary</label>

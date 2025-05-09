@@ -15,8 +15,8 @@
     </div>
 
     <div class="mb-3">
-        <label>Position</label>
-        <input type="text" name="position" class="form-control" value="{{ $employee->position }}" required>
+        <label>department_id</label>
+        <input type="text" name="department_id" class="form-control" value="{{ $employee->department_id }}" required>
     </div>
 
     <div class="mb-3">
