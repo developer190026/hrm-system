@@ -4,6 +4,8 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DepartmentApiController;
 use App\Http\Controllers\AlldepartmentController;
+use App\Http\Controllers\EmailController;
+
 use Illuminate\Support\Facades\Auth;
 
 // Authentication Routes
@@ -44,3 +46,5 @@ Route::middleware('auth')->group(function () {
     Route::put('/departments/{id}', [DepartmentController::class, 'update'])->name('departments.update');
     Route::delete('/departments/{id}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
 });
+
+Route::get('/email',[EmailController::class,'sendemail']);
