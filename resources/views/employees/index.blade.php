@@ -7,7 +7,7 @@
 
 
             <div class="d-flex justify-content-between align-items-center mb-4">
-                
+
                 @can('isAdmin')
                 <h2 class="mb-0">List for admin</h2>
                 @endcan
@@ -15,7 +15,7 @@
                 @cannot('isAdmin')
                 <h2 class="mb-0">Employee List</h2>
                 @endcannot
-                
+
 
 
                 <a href="{{ route('employees.create') }}" class="btn btn-primary">Add New</a>
@@ -30,8 +30,10 @@
                     <thead class="table-dark">
                         <tr>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Department</th>
                             <th>Salary</th>
+
                             <th>Image</th>
                             <th>Actions</th>
                         </tr>
@@ -40,12 +42,13 @@
                         @foreach($employees as $employee)
                         <tr>
                             <td>{{ $employee->name }}</td>
-                            <td>   
+                            <td>{{ $employee->email }}</td>
+                            <td>
                                 {{ $employee->department ? $employee->department->department_name : 'No Department' }}
                                 [ {{ $employee->department_id }} ]
                             </td>
-                            
-                            
+
+
                             <td>${{ number_format($employee->salary, 2) }}</td>
                             <td>
                                 <img src="{{ $employee->image ? asset('storage/' . $employee->image) : asset('images/user.jpg') }}" width="60" class="rounded shadow-sm">
