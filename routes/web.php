@@ -6,6 +6,7 @@ use App\Http\Controllers\DepartmentApiController;
 use App\Http\Controllers\AlldepartmentController;
 use App\Http\Controllers\EmailController;
 
+use App\Http\Controllers\EmployeePasswordResetController;
 use Illuminate\Support\Facades\Auth;
 
 // Authentication Routes
@@ -48,3 +49,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/email',[EmailController::class,'sendemail']);
+Route::get('employee/password/reset', [EmployeePasswordResetController::class, 'showLinkRequestForm'])->name('employee.password.request');
+Route::post('employee/password/email', [EmployeePasswordResetController::class, 'sendResetLinkEmail'])->name('employee.password.email');
+Route::get('employee/password/reset/{token}', [EmployeePasswordResetController::class, 'showResetForm'])->name('employee.password.reset');
+Route::post('employee/password/reset', [EmployeePasswordResetController::class, 'reset'])->name('employee.password.update');
