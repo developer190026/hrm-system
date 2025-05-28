@@ -9,3 +9,6 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('test:cron')->everyMinute();
+
+
+Schedule::command('emails:send-reminders')->everyMinute();

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Employee Management')</title>
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -76,11 +77,14 @@
                 <div class="sticky-top">
                     <h4 class="text-white mb-4">Admin Panel</h4>
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-2">
-                            <a class="nav-link text-white {{ request()->routeIs('dashboard') ? 'fw-bold active' : '' }}" href="{{ route('dashboard') }}">
-                                <i class="bi bi-speedometer2"></i> Dashboard
-                            </a>
-                        </li>
+                    @unlessrole('employee')
+                    <li class="nav-item mb-2">
+                    <a class="nav-link text-white {{ request()->routeIs('dashboard') ? 'fw-bold active' : '' }}" href="{{ route('dashboard') }}">
+                    <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                    </li>
+
+
                         <li class="nav-item mb-2">
                             <a class="nav-link text-white {{ request()->is('employees*') ? 'fw-bold active' : '' }}" href="{{ route('employees.index') }}">
                                 <i class="bi bi-people"></i> Employees
@@ -91,7 +95,17 @@
                                 <i class="bi bi-person"></i>All Departments
                             </a>
                         </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link text-white {{ request()->routeIs('admin.leaves.index') ? 'fw-bold active' : '' }}" href="{{ route('admin.leaves.index') }}">
+                                <i class="bi bi-person"></i>All Leave request
+                            </a>
+                        </li>
 
+                     @endunlessrole
+                     <li class="nav-item mb-2">
+                           <a class="nav-link text-white {{ request()->routeIs('leave-requests.index') ? 'fw-bold active' : '' }}" href="{{ route('leave-requests.index') }}">
+                         Leave Request
+                        </li>
                         <li class="nav-item mb-2">
                             <a class="nav-link text-white {{ request()->routeIs('profile') ? 'fw-bold active' : '' }}" href="{{ route('profile') }}">
                                 <i class="bi bi-person"></i> Profile
@@ -102,6 +116,7 @@
                                 <i class="bi bi-gear"></i> Settings
                             </a>
                         </li>
+
                         @auth
                         <li class="nav-item">
                             <form method="POST" action="{{ route('logout') }}">

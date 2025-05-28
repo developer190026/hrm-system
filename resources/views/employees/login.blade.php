@@ -39,7 +39,11 @@
 
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
+            <br>
+            <a href="{{ route('register') }}" class="btn btn-primary w-100" >Register</a>
           <a href="{{ route('employee.password.request') }}">Forget password</a>
+
+
         </div>
     </div>
 </div>
