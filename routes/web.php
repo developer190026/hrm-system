@@ -57,7 +57,7 @@ Route::get('employee/password/reset/{token}', [EmployeePasswordResetController::
 Route::post('employee/password/reset', [EmployeePasswordResetController::class, 'reset'])->name('employee.password.update');
 
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:employee'])->group(function () {
     Route::resource('leave-requests', LeaveRequestController::class)
         ->only(['index', 'create', 'store'])
         ->names([
@@ -66,6 +66,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             'store' => 'leave-requests.store',
         ]);
 });
+
 Route::middleware(['auth'])->group(function () {
     Route::post('/leave/{id}/approve', [LeaveRequestController::class, 'approve'])->name('leave.approve');
     Route::post('/leave/{id}/reject', [LeaveRequestController::class, 'reject'])->name('leave.reject');

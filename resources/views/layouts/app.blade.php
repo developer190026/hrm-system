@@ -102,10 +102,13 @@
                         </li>
 
                      @endrole
+                     @role('employee')
                      <li class="nav-item mb-2">
-                           <a class="nav-link text-white {{ request()->routeIs('leave-requests.index') ? 'fw-bold active' : '' }}" href="{{ route('leave-requests.index') }}">
-                         Leave Request
-                        </li>
+                            <a class="nav-link text-white {{ request()->routeIs('leave-requests.index') ? 'fw-bold active' : '' }}" href="{{ route('leave-requests.index') }}">
+                            Leave Request </a>
+                    </li>
+                    @endrole
+
                         <li class="nav-item mb-2">
                             <a class="nav-link text-white {{ request()->routeIs('profile') ? 'fw-bold active' : '' }}" href="{{ route('profile') }}">
                                 <i class="bi bi-person"></i> Profile
