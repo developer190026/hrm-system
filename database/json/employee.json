@@ -2,27 +2,32 @@
     {
         "name": "John Doe",
         "salary": 75000.00,
+        "email": "developer190026@gmail.com",
         "department_id" : 1
-        
+
     },
     {
         "name": "Jane Smith",
         "salary": 85000.00,
+        "email": "developer190026@gmail.com",
         "department_id" : 4
     },
     {
         "name": "Ali Khan",
         "salary": 50000.00,
+        "email": "developer190026@gmail.com",
         "department_id" : 5
     },
     {
         "name": "Maria Garcia",
         "salary": 65000.00,
+        "email": "developer190026@gmail.com",
         "department_id" : 8
     },
     {
         "name": "Daniel Lee",
         "salary": 55000.00,
+        "email": "developer190026@gmail.com",
         "department_id" : 7
     }
 ]

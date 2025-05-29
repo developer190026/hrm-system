@@ -1,13 +1,15 @@
 <?php
+use App\Http\Controllers\LeaveRequestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DepartmentApiController;
 use App\Http\Controllers\AlldepartmentController;
 use App\Http\Controllers\EmailController;
-
+use App\Http\Controllers\AdminLeaveController;
+use App\Http\Controllers\EmployeePasswordResetController;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Auth\RegisterController;
 // Authentication Routes
 Route::get('/employees/login', [EmployeeController::class, 'showLoginForm'])->name('login'); // Required by 'auth' middleware
 Route::post('/employees/login', [EmployeeController::class, 'login'])->name('employees.userlogin');
@@ -48,3 +50,46 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/email',[EmailController::class,'sendemail']);
+Route::get('employee/password/reset', [EmployeePasswordResetController::class, 'showLinkRequestForm'])->name('employee.password.request');
+Route::post('employee/password/email', [EmployeePasswordResetController::class, 'sendResetLinkEmail'])->name('employee.password.email');
+Route::get('employee/password/reset/{token}', [EmployeePasswordResetController::class, 'showResetForm'])->name('employee.password.reset');
+Route::post('employee/password/reset', [EmployeePasswordResetController::class, 'reset'])->name('employee.password.update');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('leave-requests', LeaveRequestController::class)
+        ->only(['index', 'create', 'store'])
+        ->names([
+            'index' => 'leave-requests.index',
+            'create' => 'leave-requests.create',
+            'store' => 'leave-requests.store',
+        ]);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/leave/{id}/approve', [LeaveRequestController::class, 'approve'])->name('leave.approve');
+    Route::post('/leave/{id}/reject', [LeaveRequestController::class, 'reject'])->name('leave.reject');
+});
+Route::get('/leaves', [LeaveRequestController::class, 'index'])->name('leaves.index');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return 'Admin dashboard';
+    });
+});
+
+Route::middleware(['auth', 'role:employee'])->group(function () {
+    Route::get('/employees', function () {
+        return 'Employee dashboard';
+    });
+});
+
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
+
+
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/leaves', [AdminLeaveController::class, 'index'])->name('admin.leaves.index');
+    Route::post('/admin/leaves/{id}/status', [AdminLeaveController::class, 'updateStatus'])->name('admin.leaves.updateStatus');
+});

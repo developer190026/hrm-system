@@ -14,6 +14,10 @@
         <input type="text" name="name" class="form-control" value="{{ $employee->name }}" required>
     </div>
 
+     <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" value="{{ $employee->name }}" required>
+    </div>
     <div class="mb-3">
         <label>department_id</label>
         <input type="text" name="department_id" class="form-control" value="{{ $employee->department_id }}" required>

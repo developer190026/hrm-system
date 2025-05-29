@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Projects;
 use Illuminate\Http\Request;
 
-class DepartmentController extends Controller
+class DepartmentApiController extends Controller
 
 {
     public function index()
@@ -28,7 +28,7 @@ class DepartmentController extends Controller
             'project' => $department
         ], 201);
     }
- 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -37,7 +37,7 @@ class DepartmentController extends Controller
         //
     }
 
- 
+
     /**
      * Display the specified resource.
      */
