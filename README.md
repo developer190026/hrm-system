@@ -118,3 +118,11 @@ Psy Shell v0.12.8 (PHP 8.2.12 — cli) by Justin Hileman
 
 > $user->save();
 = true
+
+employee
+test123456@gmail.com
+admin@12345
+
+admin
+developer190026@gmail.com
+admin@12345

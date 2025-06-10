@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminLeaveController;
 use App\Http\Controllers\EmployeePasswordResetController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\ChatController;
 // Authentication Routes
 Route::get('/employees/login', [EmployeeController::class, 'showLoginForm'])->name('login'); // Required by 'auth' middleware
 Route::post('/employees/login', [EmployeeController::class, 'login'])->name('employees.userlogin');
@@ -56,7 +58,7 @@ Route::get('employee/password/reset/{token}', [EmployeePasswordResetController::
 Route::post('employee/password/reset', [EmployeePasswordResetController::class, 'reset'])->name('employee.password.update');
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:employee'])->group(function () {
     Route::resource('leave-requests', LeaveRequestController::class)
         ->only(['index', 'create', 'store'])
         ->names([
@@ -93,3 +95,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/leaves', [AdminLeaveController::class, 'index'])->name('admin.leaves.index');
     Route::post('/admin/leaves/{id}/status', [AdminLeaveController::class, 'updateStatus'])->name('admin.leaves.updateStatus');
 });
+
+
+
+Route::get('/checkout', [StripePaymentController::class, 'checkout'])->name('checkout');
+Route::get('/checkout/success', [StripePaymentController::class, 'success'])->name('checkout.success');
+Route::get('/checkout/cancel', [StripePaymentController::class, 'cancel'])->name('checkout.cancel');
+
+
+
+
+Route::view('/chat', 'chat');
+Route::post('/ask', [ChatController::class, 'ask']);
