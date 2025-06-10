@@ -11,6 +11,7 @@ use App\Http\Controllers\EmployeePasswordResetController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\ChatController;
 // Authentication Routes
 Route::get('/employees/login', [EmployeeController::class, 'showLoginForm'])->name('login'); // Required by 'auth' middleware
 Route::post('/employees/login', [EmployeeController::class, 'login'])->name('employees.userlogin');
@@ -100,3 +101,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::get('/checkout', [StripePaymentController::class, 'checkout'])->name('checkout');
 Route::get('/checkout/success', [StripePaymentController::class, 'success'])->name('checkout.success');
 Route::get('/checkout/cancel', [StripePaymentController::class, 'cancel'])->name('checkout.cancel');
+
+
+
+
+Route::view('/chat', 'chat');
+Route::post('/ask', [ChatController::class, 'ask']);

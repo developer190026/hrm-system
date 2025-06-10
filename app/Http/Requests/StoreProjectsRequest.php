@@ -11,7 +11,7 @@ class StoreProjectsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreProjectsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+
+            'name' => 'required|string|max:255',
+            'department_id' => 'required|string|max:255',
+            'salary' => 'required|numeric',
+            'email' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

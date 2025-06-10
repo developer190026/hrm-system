@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\employee;
 use App\Models\Department;
-
+use App\Http\Requests\StoreProjectsRequest;
 use App\Mail\welcomemail;
 
 use Illuminate\Support\Facades\Mail;
@@ -66,15 +66,9 @@ class EmployeeController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(StoreProjectsRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'department_id' => 'required|string|max:255',
-            'salary' => 'required|numeric',
-            'email' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+
 
         $imagePath = $request->hasFile('image')
             ? $request->file('image')->store('employee_images', 'public')

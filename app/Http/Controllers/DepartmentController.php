@@ -3,14 +3,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Department;
+use App\Http\Resources\Alldepartments;
+use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
     public function index()
-    {
-        $departments = Department::all();
-        return view('departments.index', compact('departments'));
-    }
+{
+    $departments = Department::all();
+
+    // Transform the data using your Resource
+    $transformed = Alldepartments::collection($departments)->resolve();
+
+
+    //$transformed = new Alldepartments($departments);
+    // /dd($transformed);
+    // Pass transformed data to the view
+    return view('departments.index', ['departments' => $transformed]);
+}
+
 
     public function create()
     {
